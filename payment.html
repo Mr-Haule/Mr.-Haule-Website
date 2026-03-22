@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Make Payment | Mr. Haule Services</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <div class="container payment-container">
+    <nav class="navbar-premium">
+      <div class="nav-container">
+        <div class="logo-premium">
+          <div class="logo-icon">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <div class="logo-text">
+            <span class="logo-main">Mr. Haule</span>
+            <span class="logo-sub">Services</span>
+          </div>
+        </div>
+        <div class="nav-menu">
+          <a href="index.html">Home</a>
+          <a href="dashboard.html">Dashboard</a>
+          <button id="logoutBtnPayment" class="btn-logout-small">Logout</button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="payment-main">
+      <div class="payment-header">
+        <i class="fas fa-credit-card"></i>
+        <h1>Make a Payment</h1>
+        <p>Choose your preferred payment method and complete the transaction</p>
+      </div>
+
+      <div class="payment-grid">
+        <!-- Payment Methods Section -->
+        <div class="payment-methods-card">
+          <h3><i class="fas fa-mobile-alt"></i> Payment Methods</h3>
+          
+          <!-- Mobile Money Options -->
+          <div class="mobile-money-options">
+            <h4>📱 Mobile Money</h4>
+            <div class="payment-methods-grid">
+              <div class="payment-method-item" data-method="vodacom" data-number="59183849">
+                <i class="fas fa-mobile-alt"></i>
+                <strong>VODA LIPA</strong>
+                <span>59183849</span>
+              </div>
+              <div class="payment-method-item" data-method="tigo" data-number="45198490">
+                <i class="fas fa-mobile-alt"></i>
+                <strong>TIGO LIPA</strong>
+                <span>45198490</span>
+              </div>
+              <div class="payment-method-item" data-method="airtel" data-number="65525676">
+                <i class="fas fa-mobile-alt"></i>
+                <strong>AIRTEL LIPA</strong>
+                <span>65525676</span>
+              </div>
+              <div class="payment-method-item" data-method="halopesa" data-number="255625568661">
+                <i class="fas fa-wallet"></i>
+                <strong>HALOPESA</strong>
+                <span>+255 625 568 661</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bank Transfer Option -->
+          <div class="bank-transfer-option">
+            <h4>🏦 Bank Transfer</h4>
+            <div class="bank-details-card">
+              <div class="bank-info-highlight">
+                <div class="bank-row">
+                  <span class="bank-label">Bank Name:</span>
+                  <span class="bank-value">CRDB Bank Tanzania</span>
+                </div>
+                <div class="bank-row">
+                  <span class="bank-label">Account Name:</span>
+                  <span class="bank-value">AMANI ERASMUCE HAULE</span>
+                </div>
+                <div class="bank-row highlight">
+                  <span class="bank-label">Account Number:</span>
+                  <span class="bank-value" id="bankAccountNumber">0152836592900</span>
+                  <button class="btn-copy-small" onclick="copyBankAccount()">
+                    <i class="fas fa-copy"></i>
+                  </button>
+                </div>
+                <div class="bank-row">
+                  <span class="bank-label">Branch:</span>
+                  <span class="bank-value">Kariakoo, Dar es Salaam</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Receiver Info -->
+          <div class="receiver-info">
+            <div class="receiver-card">
+              <i class="fas fa-user-check"></i>
+              <div>
+                <strong>JINA LA MPOKEZI:</strong>
+                <span>AMANI ERASMUCE HAULE</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Payment Form -->
+        <div class="payment-form-card">
+          <h3><i class="fas fa-file-invoice-dollar"></i> Payment Information</h3>
+          
+          <form id="paymentForm">
+            <div class="input-group-premium">
+              <label><i class="fas fa-user"></i> Full Name</label>
+              <input type="text" id="payerName" readonly style="background:#f5f5f5;">
+            </div>
+
+            <div class="input-group-premium">
+              <label><i class="fas fa-envelope"></i> Email</label>
+              <input type="email" id="payerEmail" readonly style="background:#f5f5f5;">
+            </div>
+
+            <div class="input-group-premium">
+              <label><i class="fas fa-tag"></i> Service Type</label>
+              <select id="paymentService">
+                <option value="">Select service (optional)</option>
+                <option value="HESLB Application">HESLB Application</option>
+                <option value="NIDA Registration">NIDA Registration</option>
+                <option value="RITA Certificate">RITA Certificate</option>
+                <option value="University Application">University Application</option>
+                <option value="Academic Work">Academic Work</option>
+                <option value="IT Support">IT Support</option>
+                <option value="Other Service">Other Service</option>
+              </select>
+            </div>
+
+            <div class="input-group-premium">
+              <label><i class="fas fa-money-bill-wave"></i> Amount (TSh) *</label>
+              <input type="number" id="paymentAmount" placeholder="Enter amount in TSh" required>
+              <div class="error-message" id="paymentAmountError"></div>
+              <small>Enter the amount you wish to pay</small>
+            </div>
+
+            <div class="input-group-premium">
+              <label><i class="fas fa-phone"></i> Phone Number (for confirmation)</label>
+              <input type="tel" id="paymentPhone" placeholder="+255XXXXXXXXX">
+              <div class="error-message" id="paymentPhoneError"></div>
+            </div>
+
+            <div class="input-group-premium">
+              <label><i class="fas fa-university"></i> Select Payment Method *</label>
+              <div class="payment-method-select">
+                <div class="method-option" data-method="vodacom">
+                  <i class="fas fa-mobile-alt"></i>
+                  <span>VODA LIPA</span>
+                  <small>59183849</small>
+                </div>
+                <div class="method-option" data-method="tigo">
+                  <i class="fas fa-mobile-alt"></i>
+                  <span>TIGO LIPA</span>
+                  <small>45198490</small>
+                </div>
+                <div class="method-option" data-method="airtel">
+                  <i class="fas fa-mobile-alt"></i>
+                  <span>AIRTEL LIPA</span>
+                  <small>65525676</small>
+                </div>
+                <div class="method-option" data-method="halopesa">
+                  <i class="fas fa-wallet"></i>
+                  <span>HALOPESA</span>
+                  <small>+255 625 568 661</small>
+                </div>
+                <div class="method-option" data-method="bank">
+                  <i class="fas fa-university"></i>
+                  <span>Bank Transfer</span>
+                  <small>CRDB - 0152836592900</small>
+                </div>
+              </div>
+              <input type="hidden" id="selectedPaymentMethod" required>
+              <div class="error-message" id="paymentMethodError"></div>
+            </div>
+
+            <div class="input-group-premium">
+              <label><i class="fas fa-hashtag"></i> Transaction Reference (Optional)</label>
+              <input type="text" id="transactionRef" placeholder="Enter transaction ID or reference number">
+              <small>Enter the transaction ID from your mobile money or bank transfer</small>
+            </div>
+
+            <div class="input-group-premium">
+              <label><i class="fas fa-upload"></i> Payment Proof (Optional)</label>
+              <input type="file" id="paymentProof" accept="image/*,.pdf">
+              <small>Upload screenshot of payment confirmation (optional but recommended)</small>
+            </div>
+
+            <button type="submit" class="btn-primary-premium btn-block">
+              <i class="fas fa-check-circle"></i> Submit Payment Confirmation
+            </button>
+          </form>
+
+          <div class="payment-note">
+            <i class="fas fa-shield-alt"></i>
+            <p>After submitting, our team will verify your payment and contact you within 15 minutes via WhatsApp to confirm and proceed with your service.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payment History -->
+      <div class="payment-history-card">
+        <h3><i class="fas fa-history"></i> Payment History</h3>
+        <div id="paymentHistory" class="payment-history-list">
+          <div class="empty-history">
+            <i class="fas fa-receipt"></i>
+            <p>No payment history yet</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer-premium-simple">
+      <p id="copyright"></p>
+    </footer>
+  </div>
+
+  <style>
+    /* Additional styles for payment page */
+    .mobile-money-options, .bank-transfer-option {
+      margin-bottom: 1.5rem;
+    }
+    
+    .mobile-money-options h4, .bank-transfer-option h4 {
+      margin-bottom: 0.8rem;
+      color: #0f2b3d;
+      font-size: 0.95rem;
+    }
+    
+    .payment-methods-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+    
+    .payment-method-item {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 0.8rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .payment-method-item:hover {
+      border-color: #1e88e5;
+      background: #f0f9ff;
+      transform: translateY(-2px);
+    }
+    
+    .payment-method-item.active {
+      border-color: #1e88e5;
+      background: #e8f0fe;
+    }
+    
+    .payment-method-item i {
+      font-size: 1.5rem;
+      color: #1e88e5;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    
+    .payment-method-item strong {
+      display: block;
+      font-size: 0.85rem;
+      margin-bottom: 0.25rem;
+    }
+    
+    .payment-method-item span {
+      font-size: 0.75rem;
+      color: #64748b;
+      font-family: monospace;
+    }
+    
+    .receiver-info {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #e2e8f0;
+    }
+    
+    .receiver-card {
+      background: linear-gradient(135deg, #e8f0fe, #f0f9ff);
+      border-radius: 12px;
+      padding: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    
+    .receiver-card i {
+      font-size: 1.8rem;
+      color: #1e88e5;
+    }
+    
+    .receiver-card strong {
+      display: block;
+      font-size: 0.7rem;
+      color: #64748b;
+    }
+    
+    .receiver-card span {
+      font-weight: 600;
+      color: #0f2b3d;
+    }
+    
+    .payment-method-select {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.8rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .method-option {
+      background: #f8fafc;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 0.8rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .method-option:hover {
+      border-color: #1e88e5;
+      transform: translateY(-2px);
+    }
+    
+    .method-option.selected {
+      border-color: #1e88e5;
+      background: linear-gradient(135deg, #e8f0fe, #f0f9ff);
+    }
+    
+    .method-option i {
+      font-size: 1.2rem;
+      color: #1e88e5;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    
+    .method-option span {
+      font-weight: 600;
+      font-size: 0.85rem;
+      display: block;
+    }
+    
+    .method-option small {
+      font-size: 0.7rem;
+      color: #64748b;
+      display: block;
+      margin-top: 0.25rem;
+    }
+    
+    .mt-20 {
+      margin-top: 1rem;
+    }
+    
+    .toast-notification {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #10b981;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      z-index: 9999;
+      animation: slideIn 0.3s ease;
+    }
+    
+    @keyframes slideIn {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+  </style>
+
+  <script src="script.js"></script>
+  <script>
+    // Generate random transaction ID for reference
+    function generateTransactionId() {
+      return 'TXN-' + Date.now().toString().slice(-8) + Math.floor(1000 + Math.random() * 9000);
+    }
+    
+    function copyBankAccount() {
+      const accountNumber = '0152836592900';
+      navigator.clipboard.writeText(accountNumber);
+      showToast('Bank account number copied: ' + accountNumber);
+    }
+    
+    function showToast(message) {
+      const toast = document.createElement('div');
+      toast.className = 'toast-notification';
+      toast.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 3000);
+    }
+    
+    // Load user data
+    const currentUser = JSON.parse(localStorage.getItem('mr_haule_current_user') || 'null');
+    if (currentUser) {
+      document.getElementById('payerName').value = currentUser.fullName || '';
+      document.getElementById('payerEmail').value = currentUser.email || '';
+      document.getElementById('paymentPhone').value = currentUser.phone || '';
+    } else {
+      window.location.href = 'login.html';
+    }
+    
+    // Payment method selection
+    const methodOptions = document.querySelectorAll('.method-option');
+    const selectedMethodInput = document.getElementById('selectedPaymentMethod');
+    
+    methodOptions.forEach(option => {
+      option.addEventListener('click', function() {
+        methodOptions.forEach(opt => opt.classList.remove('selected'));
+        this.classList.add('selected');
+        const method = this.dataset.method;
+        selectedMethodInput.value = method;
+        
+        // Clear error if exists
+        const methodError = document.getElementById('paymentMethodError');
+        if (methodError) methodError.textContent = '';
+      });
+    });
+    
+    // Logout
+    const logoutBtn = document.getElementById('logoutBtnPayment');
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', () => {
+        localStorage.removeItem('mr_haule_current_user');
+        window.location.href = 'index.html';
+      });
+    }
+    
+    // Payment form submission
+    const paymentForm = document.getElementById('paymentForm');
+    if (paymentForm) {
+      paymentForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const amount = document.getElementById('paymentAmount').value;
+        const phone = document.getElementById('paymentPhone').value;
+        const selectedMethod = selectedMethodInput.value;
+        const service = document.getElementById('paymentService').value;
+        const transactionRef = document.getElementById('transactionRef').value;
+        
+        let isValid = true;
+        
+        // Validate amount
+        if (!amount || amount <= 0) {
+          document.getElementById('paymentAmountError').textContent = 'Please enter a valid amount';
+          isValid = false;
+        } else {
+          document.getElementById('paymentAmountError').textContent = '';
+        }
+        
+        // Validate payment method
+        if (!selectedMethod) {
+          document.getElementById('paymentMethodError').textContent = 'Please select a payment method';
+          isValid = false;
+        } else {
+          document.getElementById('paymentMethodError').textContent = '';
+        }
+        
+        // Validate phone (optional but format if provided)
+        if (phone) {
+          const phonePattern = /^\+255[0-9]{9}$|^0[0-9]{9}$/;
+          if (!phonePattern.test(phone)) {
+            document.getElementById('paymentPhoneError').textContent = 'Phone must be +255XXXXXXXXX or 0XXXXXXXXX';
+            isValid = false;
+          } else {
+            document.getElementById('paymentPhoneError').textContent = '';
+          }
+        }
+        
+        if (!isValid) return;
+        
+        // Get payment method details
+        const methodNames = {
+          vodacom: 'VODA LIPA (59183849)',
+          tigo: 'TIGO LIPA (45198490)',
+          airtel: 'AIRTEL LIPA (65525676)',
+          halopesa: 'HALOPESA (+255 625 568 661)',
+          bank: 'Bank Transfer (CRDB 0152836592900)'
+        };
+        
+        const methodNumber = {
+          vodacom: '59183849',
+          tigo: '45198490',
+          airtel: '65525676',
+          halopesa: '+255625568661',
+          bank: 'CRDB 0152836592900'
+        };
+        
+        // Save payment record
+        const paymentRecord = {
+          id: Date.now(),
+          transactionId: transactionRef || generateTransactionId(),
+          service: service || 'General Payment',
+          amount: parseInt(amount),
+          paymentMethod: selectedMethod,
+          methodName: methodNames[selectedMethod] || selectedMethod,
+          methodNumber: methodNumber[selectedMethod],
+          phone: phone || currentUser.phone,
+          date: new Date().toLocaleString(),
+          timestamp: Date.now(),
+          status: 'Pending Verification',
+          userName: currentUser.fullName,
+          userEmail: currentUser.email
+        };
+        
+        const payments = JSON.parse(localStorage.getItem('mr_haule_payments') || '[]');
+        payments.unshift(paymentRecord);
+        localStorage.setItem('mr_haule_payments', JSON.stringify(payments));
+        
+        // Build WhatsApp message
+        let message = "💳 *PAYMENT CONFIRMATION - Mr. Haule Services*%0A";
+        message += "━━━━━━━━━━━━━━━━━━━━%0A";
+        message += `👤 *Jina:* ${currentUser.fullName}%0A`;
+        message += `📧 *Barua pepe:* ${currentUser.email}%0A`;
+        message += `📞 *Simu:* ${phone || currentUser.phone}%0A`;
+        message += `🛠️ *Huduma:* ${service || 'General Payment'}%0A`;
+        message += `💰 *Kiasi:* TSh ${parseInt(amount).toLocaleString()}%0A`;
+        message += `💳 *Njia ya Malipo:* ${methodNames[selectedMethod]}%0A`;
+        message += `🔢 *Namba ya Malipo:* ${methodNumber[selectedMethod]}%0A`;
+        message += `📋 *Kitambulisho:* ${paymentRecord.transactionId}%0A`;
+        message += `📅 *Tarehe:* ${new Date().toLocaleString()}%0A`;
+        message += "━━━━━━━━━━━━━━━━━━━━%0A";
+        message += `👤 *JINA LA MPOKEZI:* AMANI ERASMUCE HAULE%0A`;
+        message += "━━━━━━━━━━━━━━━━━━━━%0A";
+        message += "⏳ *Hali:* Inasubiri uthibitisho - Tutawasiliana nanyi kwa WhatsApp muda si mrefu.%0A";
+        message += "✅ *Asante kwa kuchagua Mr. Haule Services!*";
+        
+        // Open WhatsApp
+        window.open(`https://wa.me/255625568661?text=${message}`, '_blank');
+        
+        alert(`✓ Payment of TSh ${parseInt(amount).toLocaleString()} recorded successfully!\n\n` +
+          `Payment Method: ${methodNames[selectedMethod]}\n` +
+          `Transaction ID: ${paymentRecord.transactionId}\n\n` +
+          `We will verify your payment and contact you within 15 minutes via WhatsApp.\n\n` +
+          `Thank you for choosing Mr. Haule Services!`);

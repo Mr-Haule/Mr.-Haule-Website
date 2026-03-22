@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register | Mr. Haule Services</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <div class="container auth-container">
+    <!-- Premium Navigation -->
+    <nav class="navbar-premium">
+      <div class="nav-container">
+        <div class="logo-premium">
+          <div class="logo-icon">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <div class="logo-text">
+            <span class="logo-main">Mr. Haule</span>
+            <span class="logo-sub">Services</span>
+          </div>
+        </div>
+        <div class="nav-menu">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="login.html" class="nav-link">Login</a>
+          <a href="register.html" class="nav-link active">Register</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="auth-form-container">
+      <div class="auth-card-premium">
+        <div class="auth-header-premium">
+          <div class="auth-icon">
+            <i class="fas fa-user-plus"></i>
+          </div>
+          <h2>Create Account</h2>
+          <p>Join us to access all academic and IT support services</p>
+        </div>
+
+        <form id="registerForm">
+          <div class="input-group-premium">
+            <label><i class="fas fa-user"></i> Full Name</label>
+            <input type="text" id="regFullName" placeholder="John Michael Haule" required>
+            <div class="error-message" id="regNameError"></div>
+            <small>Minimum 2 words (First and Last name)</small>
+          </div>
+
+          <div class="input-group-premium">
+            <label><i class="fas fa-envelope"></i> Email Address</label>
+            <input type="email" id="regEmail" placeholder="example@domain.com" required>
+            <div class="error-message" id="regEmailError"></div>
+          </div>
+
+          <div class="input-group-premium">
+            <label><i class="fas fa-phone"></i> Phone Number</label>
+            <input type="tel" id="regPhone" placeholder="+255XXXXXXXXX" required>
+            <div class="error-message" id="regPhoneError"></div>
+            <small>Format: +255 followed by 9 digits (e.g., +255625568661)</small>
+          </div>
+
+          <div class="input-group-premium">
+            <label><i class="fas fa-lock"></i> Password</label>
+            <input type="password" id="regPassword" placeholder="Minimum 6 characters" required>
+            <div class="error-message" id="regPasswordError"></div>
+          </div>
+
+          <div class="input-group-premium">
+            <label><i class="fas fa-check-circle"></i> Confirm Password</label>
+            <input type="password" id="regConfirmPassword" placeholder="Confirm your password" required>
+            <div class="error-message" id="regConfirmError"></div>
+          </div>
+
+          <button type="submit" class="btn-primary-premium btn-block">
+            <i class="fas fa-user-plus"></i> Register
+          </button>
+        </form>
+
+        <div class="auth-footer">
+          <p>Already have an account? <a href="login.html">Login here</a></p>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer-premium-simple">
+      <p id="copyright"></p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

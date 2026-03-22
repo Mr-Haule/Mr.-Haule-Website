@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | Mr. Haule Services</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <div class="container dashboard-container">
+    <!-- Premium Navigation -->
+    <nav class="navbar-premium">
+      <div class="nav-container">
+        <div class="logo-premium">
+          <div class="logo-icon">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <div class="logo-text">
+            <span class="logo-main">Mr. Haule</span>
+            <span class="logo-sub">Services</span>
+          </div>
+        </div>
+        <div class="nav-menu">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="dashboard.html" class="nav-link active">Dashboard</a>
+          <a href="payment.html" class="nav-link">Payment</a>
+          <button id="logoutBtn" class="btn-logout-small">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Dashboard Header -->
+    <div class="dashboard-header">
+      <h1><i class="fas fa-tachometer-alt"></i> My Dashboard</h1>
+      <p id="welcomeMessage">Welcome to your personal dashboard. Submit service requests and track your history.</p>
+    </div>
+
+    <!-- Request Form Section -->
+    <section class="form-section">
+      <h2><i class="fas fa-pen-alt"></i> Place New Service Request</h2>
+      <p class="form-intro">Fill the form below. All fields marked with * are required. We'll respond via WhatsApp within 15 minutes.</p>
+      
+      <form id="serviceRequestForm">
+        <div class="input-group-premium">
+          <label><i class="fas fa-user"></i> Full Name *</label>
+          <input type="text" id="fullname" readonly style="background:#f5f5f5;">
+        </div>
+
+        <div class="input-group-premium">
+          <label><i class="fas fa-envelope"></i> Email Address *</label>
+          <input type="email" id="email" readonly style="background:#f5f5f5;">
+        </div>
+
+        <div class="input-group-premium">
+          <label><i class="fas fa-phone"></i> Phone Number *</label>
+          <input type="tel" id="phone" readonly style="background:#f5f5f5;">
+        </div>
+
+        <div class="input-group-premium">
+          <label><i class="fas fa-list"></i> Select Service *</label>
+          <select id="service">
+            <option value="" disabled selected>– Choose a service –</option>
+            <optgroup label="🏛️ HESLB (Mikopo & Marekebisho)">
+              <option value="HESLB: Maombi ya Mkopo">📝 Maombi ya Mkopo</option>
+              <option value="HESLB: Marekebisho ya taarifa">✏️ Marekebisho ya taarifa</option>
+              <option value="HESLB: Uhakiki wa nyaraka">📄 Uhakiki wa nyaraka</option>
+              <option value="HESLB: Mwongozo wa maombi hatua kwa hatua">📖 Mwongozo wa maombi</option>
+            </optgroup>
+            <optgroup label="🆔 RITA (Vyeti & Marekebisho)">
+              <option value="RITA: Vyeti vya Kuzaliwa">👶 Vyeti vya Kuzaliwa</option>
+              <option value="RITA: Vyeti vya Kifo">⚰️ Vyeti vya Kifo</option>
+              <option value="RITA: Marekebisho ya taarifa">✏️ Marekebisho ya taarifa</option>
+            </optgroup>
+            <optgroup label="🪪 NIDA (Usajili & Namba)">
+              <option value="NIDA: Usajili wa NIDA">📝 Usajili wa NIDA</option>
+              <option value="NIDA: Marekebisho ya taarifa">✏️ Marekebisho ya taarifa</option>
+              <option value="NIDA: Mwongozo wa kupata Namba">📖 Mwongozo wa NIDA</option>
+            </optgroup>
+            <optgroup label="🎓 Vyuo (Udahili & Mwongozo)">
+              <option value="Vyuo: Maombi ya udahili">📋 Maombi ya udahili</option>
+              <option value="Vyuo: Uchaguzi wa kozi sahihi">🎯 Uchaguzi wa kozi</option>
+            </optgroup>
+            <optgroup label="📚 Huduma za Kitaaluma">
+              <option value="Kitaaluma: Field Report">🌍 Field Report</option>
+              <option value="Kitaaluma: Assignments">📝 Assignments</option>
+              <option value="Kitaaluma: Research">🔬 Research</option>
+              <option value="Kitaaluma: Presentations">📊 Presentations</option>
+            </optgroup>
+            <optgroup label="💻 IT Support">
+              <option value="IT Support: Windows Installation">🪟 Windows Installation</option>
+              <option value="IT Support: Kuformat PC/Laptop">💿 Kuformat PC/Laptop</option>
+              <option value="IT Support: Antivirus">🛡️ Antivirus</option>
+              <option value="IT Support: Kuondoa Virus">🦠 Kuondoa Virus</option>
+              <option value="IT Support: Kuongeza speed">⚡ Kuongeza speed</option>
+            </optgroup>
+          </select>
+          <div class="error-message" id="serviceError"></div>
+        </div>
+
+        <div class="input-group-premium">
+          <label><i class="fas fa-comment"></i> Additional Details (Optional)</label>
+          <textarea id="details" rows="4" placeholder="Describe any specific instructions, deadlines, or additional information..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-primary-premium btn-block" style="background: #25d366;">
+          <i class="fab fa-whatsapp"></i> Send via WhatsApp
+        </button>
+      </form>
+    </section>
+
+    <!-- Request History Section -->
+    <section class="history-section">
+      <h2><i class="fas fa-history"></i> My Request History</h2>
+      <div id="requestHistory" class="history-list">
+        <div class="empty-history">
+          <i class="fas fa-inbox"></i>
+          <p>No requests made yet</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Tips -->
+    <section class="quick-tips">
+      <h3><i class="fas fa-lightbulb"></i> Quick Tips</h3>
+      <div class="tips-grid">
+        <div class="tip-card">
+          <i class="fab fa-whatsapp"></i>
+          <p>Response time: <strong>15 minutes</strong></p>
+        </div>
+        <div class="tip-card">
+          <i class="fas fa-phone"></i>
+          <p>Support: <strong>+255 625 568 661</strong></p>
+        </div>
+        <div class="tip-card">
+          <i class="fas fa-envelope"></i>
+          <p>Email: <strong>hamanierasmuce@gmail.com</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer-premium-simple">
+      <p id="copyright"></p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
